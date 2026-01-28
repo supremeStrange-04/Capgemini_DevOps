@@ -3,7 +3,276 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Capgemini Training Session</title>
+    <title>Capgemini Training Portal</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+      header {
+        background: linear-gradient(135deg, #003366, #005599);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+      }
+      nav ul li {
+        margin-left: 2rem;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      nav ul li a:hover {
+        color: #ffd700;
+      }
+      .hero {
+        background:
+          linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 85, 153, 0.8)),
+          url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDYwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNjAwIiBjeT0iMzAwIiByPSIyMDAiIGZpbGw9IiNGRkRDMDIiLz4KPGNpcmNsZSBjeD0iODAwIiBjeT0iNDAwIiByPSIxNTAiIGZpbGw9IiNGRjRDQjIiLz4KPGNpcmNsZSBjeD0iNDAwIiBjeT0iNTAwIiByPSIxMjAiIGZpbGw9IiMwMDU1OTkiLz4KPC9zdmc+")
+            center/cover;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 0 2rem;
+      }
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease-out;
+      }
+      .hero p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease-out 0.2s both;
+      }
+      .cta {
+        display: inline-block;
+        background: #ffd700;
+        color: #003366;
+        padding: 1rem 2.5rem;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 50px;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        animation: fadeInUp 1s ease-out 0.4s both;
+      }
+      .cta:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+      }
+      section {
+        padding: 5rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #003366;
+      }
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s;
+      }
+      .feature-card:hover {
+        transform: translateY(-10px);
+      }
+      .feature-card i {
+        font-size: 3rem;
+        color: #005599;
+        margin-bottom: 1rem;
+      }
+      .about {
+        background: #f8f9fa;
+      }
+      .cta-section {
+        background: linear-gradient(135deg, #005599, #003366);
+        color: white;
+        text-align: center;
+      }
+      .cta-section .cta {
+        background: white;
+        color: #005599;
+        margin-top: 1rem;
+      }
+      footer {
+        background: #003366;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .hero p {
+          font-size: 1.2rem;
+        }
+        nav ul {
+          flex-direction: column;
+        }
+        nav ul li {
+          margin: 0.5rem 0;
+        }
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Capgemini Training</div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="home" class="hero">
+      <h1>Welcome to Capgemini Training</h1>
+      <p>
+        Unlock your potential with our world-class programs in Tech, Agile, Data
+        Science, and Leadership.<web:1>[web:1]</web:1>
+      </p>
+      <a href="#courses" class="cta">Explore Courses</a>
+    </section>
+
+    <section id="courses" class="features-section">
+      <h2>Our Training Programs</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div>🚀</div>
+          <h3>Agile & DevOps</h3>
+          <p>
+            Master Scrum, Kanban, SAFe, and DevOps for agile project
+            delivery.<web:1>[web:1]</web:1>
+          </p>
+        </div>
+        <div class="feature-card">
+          <div>💻</div>
+          <h3>Tech & IT Skills</h3>
+          <p>
+            IT Architecture, Software Engineering, Cloud, AI, and more.<web:1
+              >[web:1]</web:1
+            >
+          </p>
+        </div>
+        <div class="feature-card">
+          <div>📊</div>
+          <h3>Data & AI</h3>
+          <p>
+            Data Science, BI, Analytics, and Digital Customer Experience.<web:1
+              >[web:1]</web:1
+            >
+          </p>
+        </div>
+        <div class="feature-card">
+          <div>👥</div>
+          <h3>Leadership</h3>
+          <p>
+            Soft skills, communication, and personal development for
+            leaders.<web:1>[web:1]</web:1>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>About Capgemini Academy</h2>
+      <p>
+        Capgemini Academy offers unlimited access to over 300 courses across key
+        domains, empowering professionals to achieve their career goals.<web:0
+          >[web:0]</web:0
+        >
+        From foundational skills to advanced leadership training, our programs
+        are designed for IT professionals, managers, and teams.<web:7
+          >[web:7]</web:7
+        >
+      </p>
+      <p>
+        Join thousands of employees embedding learning into every stage of their
+        career lifecycle.<web:2>[web:2]</web:2>
+      </p>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to Start Your Journey?</h2>
+      <p>All You Can Train – Access unlimited courses today!</p>
+      <a href="#" class="cta">Enroll Now</a>
+    </section>
+
+    <footer id="contact">
+      <p>
+        &copy; 2026 Capgemini Training Portal. Empowering futures through
+        learning.<web:9>[web:9]</web:9>
+      </p>
+    </footer>
+
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

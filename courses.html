@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses - Capgemini Training Portal</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+      header {
+        background: linear-gradient(135deg, #003366, #005599);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+      }
+      nav ul li {
+        margin-left: 2rem;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      nav ul li a:hover,
+      nav ul li a.active {
+        color: #ffd700;
+      }
+      .hero {
+        background:
+          linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 85, 153, 0.8)),
+          url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI0MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDQwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRkZBQzAwIi8+CjxjaXJjbGUgY3g9IjMwMCIgY3k9IjIwMCIgcj0iODAiIGZpbGw9IiNGRkRDMDAiLz4KPGNpcmNsZSBjeD0iOTAwIiBjeT0iMjUwIiByPSI2MCIgZmlsbD0iIzAwNTU5OSIvPgo8L3N2Zz4=")
+            center/cover;
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        margin-top: 80px;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      .hero p {
+        font-size: 1.3rem;
+        max-width: 600px;
+      }
+      section {
+        padding: 5rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #003366;
+      }
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+      .course-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        border-top: 5px solid #005599;
+      }
+      .course-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+      .course-header {
+        background: linear-gradient(135deg, #005599, #003366);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+      .course-header h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+      .course-duration {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+      .course-body {
+        padding: 2rem;
+      }
+      .course-features {
+        list-style: none;
+        margin-bottom: 1.5rem;
+      }
+      .course-features li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+      }
+      .course-features li:before {
+        content: "✓ ";
+        color: #28a745;
+        font-weight: bold;
+      }
+      .enroll-btn {
+        width: 100%;
+        background: #ffd700;
+        color: #003366;
+        border: none;
+        padding: 1rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .enroll-btn:hover {
+        background: #ffed4e;
+      }
+      .filters {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+      }
+      .filter-btn {
+        background: #f8f9fa;
+        border: 2px solid #dee2e6;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: #005599;
+        color: white;
+        border-color: #005599;
+      }
+      footer {
+        background: #003366;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 5rem;
+      }
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+        .filters {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Capgemini Training</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#courses" class="active">Courses</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Our Courses</h1>
+      <p>
+        Choose from 300+ expert-led programs across Technology, Agile, Data, and
+        Leadership domains. All You Can Train access available.[web:0][web:9]
+      </p>
+    </section>
+
+    <section>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All Courses</button>
+        <button class="filter-btn" data-filter="tech">Technology</button>
+        <button class="filter-btn" data-filter="agile">Agile & DevOps</button>
+        <button class="filter-btn" data-filter="data">Data & AI</button>
+        <button class="filter-btn" data-filter="leadership">Leadership</button>
+      </div>
+
+      <div class="courses-grid">
+        <div class="course-card" data-category="agile">
+          <div class="course-header">
+            <h3>Certified Scrum Master (CSM)</h3>
+            <div class="course-duration">16 hours | Beginner</div>
+          </div>
+          <div class="course-body">
+            <ul class="course-features">
+              <li>Scrum framework fundamentals</li>
+              <li>Roles, events, and artifacts</li>
+              <li>Agile estimation techniques</li>
+              <li>CSM certification exam prep</li>
+            </ul>
+            <button class="enroll-btn">Enroll Now</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-category="tech">
+          <div class="course-header">
+            <h3>Cloud Computing Essentials</h3>
+            <div class="course-duration">24 hours | Intermediate</div>
+          </div>
+          <div class="course-body">
+            <ul class="course-features">
+              <li>AWS, Azure, GCP overview</li>
+              <li>Cloud architecture design</li>
+              <li>Security and compliance</li>
+              <li>Hands-on labs and projects</li>
+            </ul>
+            <button class="enroll-btn">Enroll Now</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-category="data">
+          <div class="course-header">
+            <h3>Data Science with Python</h3>
+            <div class="course-duration">40 hours | Intermediate</div>
+          </div>
+          <div class="course-body">
+            <ul class="course-features">
+              <li>Pandas, NumPy, Scikit-learn</li>
+              <li>Machine learning algorithms</li>
+              <li>Data visualization with Matplotlib</li>
+              <li>Real-world case studies</li>
+            </ul>
+            <button class="enroll-btn">Enroll Now</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-category="leadership">
+          <div class="course-header">
+            <h3>Leadership Development Program</h3>
+            <div class="course-duration">32 hours | Advanced</div>
+          </div>
+          <div class="course-body">
+            <ul class="course-features">
+              <li>Emotional intelligence</li>
+              <li>Strategic thinking</li>
+              <li>Team motivation techniques</li>
+              <li>Executive coaching sessions</li>
+            </ul>
+            <button class="enroll-btn">Enroll Now</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-category="tech">
+          <div class="course-header">
+            <h3>DevOps Practitioner</h3>
+            <div class="course-duration">20 hours | Intermediate</div>
+          </div>
+          <div class="course-body">
+            <ul class="course-features">
+              <li>CI/CD pipelines with Jenkins</li>
+              <li>Docker and Kubernetes</li>
+              <li>Infrastructure as Code</li>
+              <li>Monitoring and logging</li>
+            </ul>
+            <button class="enroll-btn">Enroll Now</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-category="agile">
+          <div class="course-header">
+            <h3>SAFe Agilist</h3>
+            <div class="course-duration">16 hours | Advanced</div>
+          </div>
+          <div class="course-body">
+            <ul class="course-features">
+              <li>Scaled Agile Framework</li>
+              <li>PI Planning workshop</li>
+              <li>ART operations</li>
+              <li>SA certification prep</li>
+            </ul>
+            <button class="enroll-btn">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        &copy; 2026 Capgemini Training Portal. Over 300 courses available
+        through Capgemini Academy.[web:9][web:0]
+      </p>
+    </footer>
+
+    <script>
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Filter functionality
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const courseCards = document.querySelectorAll(".course-card");
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const filterValue = btn.getAttribute("data-filter");
+
+          courseCards.forEach((card) => {
+            if (
+              filterValue === "all" ||
+              card.getAttribute("data-category") === filterValue
+            ) {
+              card.style.display = "block";
+              card.style.animation = "fadeInUp 0.5s ease-out";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // Enroll button functionality
+      document.querySelectorAll(".enroll-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          alert("Enrollment coming soon! Welcome to Capgemini Training.");
+        });
+      });
+    </script>
+
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </body>
+</html>
